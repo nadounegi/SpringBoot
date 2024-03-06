@@ -1,11 +1,13 @@
 package com.negi.nadou.controller;
 
-import com.negi.nadou.pojo.User;
-import jakarta.servlet.http.HttpServletRequest;
+import com.itheima.pojo.User;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -35,7 +37,7 @@ public class RequestController {
     }
     //実体参数
     @RequestMapping("/simplePojo")
-    public String simplePojo(User user){
+    public String simplePojo(com.itheima.pojo.User user){
         System.out.println(user);
         return "OK";
     }
@@ -53,5 +55,16 @@ public class RequestController {
         return "OK";
     }
     //日期参数
+    @RequestMapping("/dateParam")
+    public String dateParam(@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")LocalDateTime updateTime){
+        System.out.println(updateTime);
+        return "OK";
+    }
+    //Json参数
+    @RequestMapping("/jsonParam")
+    public String jsonParam(@RequestBody User user){
+        System.out.println(user);
+        return "OK";
+    }
 
     }
